@@ -19,10 +19,8 @@ public class BudgetTracker{
   public double calculateTotalIncome()
   {
     double total = 0;
-    for(Transaction t: transactions)
-      {
-        if(t instanceof Income)
-        {
+    for(Transaction t: transactions){
+        if(t instanceof Income){
           total += t.getAmount()
         }
       }
@@ -32,10 +30,8 @@ public class BudgetTracker{
   public double calculateTotalExpenses()
   {
     double total = 0;
-    for(Transaction t : transactions)
-      {
-        if(t instanceof Expense)
-        {
+    for(Transaction t : transactions){
+        if(t instanceof Expense){
           total += t.getAmount();
         }
       }
@@ -52,12 +48,9 @@ public class BudgetTracker{
     System.out.println("Total Expenses: $" + String.format("%.2f", expenses));
     System.out.println("Net Balance:    $" + String.format("%.2f", net));
 
-    if(expenses > budgetLimit)
-    {
+    if(expenses > budgetLimit){
       System.out.println("ALERT: You have exceeded your expense budget limit of $" + budgetLimit);
-    }
-    else
-    {
+    } else{
       System.out.println("You're all good! Remaining Budgest: $" + String.format("%.2f", (budgetLimit-expenses)));
     }
   }
@@ -66,12 +59,10 @@ public class BudgetTracker{
   public void displayALLTransactions()
   {
     System.out.println("\n--- TRANSACTION HISTORY ---");
-    if(transactions.isEmpty())
-    {
+    if(transactions.isEmpty()){
       System.out.println("No transactions recorded yet.");
     }
-    for(Transaction t : transactions)
-      {
+    for(Transaction t : transactions){
         System.out.println(t);
       }
   }
@@ -82,8 +73,7 @@ public class BudgetTracker{
     try(PrintWriter writer = new PrintWriter(new FileWriter(filename)))
       {
         writer.println("Type,Description,Amount,Category");
-        for(Transaction t : transactions)
-          {
+        for(Transaction t : transactions){
             writer.printf("%s,%s,%.2f,%s\n", t.getType(), t.description, t.amount, t.category);
           }
         System.out.println("Successfully exported transactions to " + filename);
