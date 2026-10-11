@@ -58,8 +58,40 @@ public class BudgetTracker{
     }
     else
     {
-      System.out.println("You're all good! Remaining Budgest: $" + String.format("%.2f", budgetLimit=expenses));
+      System.out.println("You're all good! Remaining Budgest: $" + String.format("%.2f", (budgetLimit-expenses)));
     }
+  }
+
+
+  public void displayALLTransactions()
+  {
+    System.out.println("\n--- TRANSACTION HISTORY ---");
+    if(transactions.isEmpty())
+    {
+      System.out.println("No transactions recorded yet.");
+    }
+    for(Transaction t : transactions)
+      {
+        System.out.println(t);
+      }
+  }
+
+
+  public void exportToFile(String filename)
+  {
+    try(PrintWriter writer = new PrintWriter(new FileWriter(filename)))
+      {
+        writer.println("Type,Description,Amount,Category");
+        for(Transaction t : transactions)
+          {
+            writer.printf("%s,%s,%.2f,%s\n", t.getType(), t.description, t.amount, t.category);
+          }
+        System.out.println("Successfully exported transactions to " + filename);
+      }
+    catch(IOExpection e)
+      {
+        System.out.println("Error writing to file: " + e.getMessage());
+      }
   }
 
   
