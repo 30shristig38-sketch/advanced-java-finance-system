@@ -5,7 +5,6 @@ public abstract class Transaction{
   
   public abstract String getType();
 
-  //Constructor
   public Transaction(String description, double amount, String category)
   {
     this.description = description;
