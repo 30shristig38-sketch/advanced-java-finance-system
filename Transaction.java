@@ -26,4 +26,7 @@ public abstract class Transaction{
   {
     return category;
   }
+
+  @Override
+  public abstract String toString();
 }
