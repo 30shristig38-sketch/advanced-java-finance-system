@@ -46,7 +46,29 @@ public class BudgetTracker{
     double income = calculateTotalIncome();
     double expenses = calculateTotalExpenses();
     double net = income - expenses;
+
+    System.out.println("\n--- FINANCIAL SUMMARY ---");
+    System.out.println("Total Income:   $" + String.format("%.2f", income));
+    System.out.println("Total Expenses: $" + String.format("%.2f", expenses));
+    System.out.println("Net Balance:    $" + String.format("%.2f", net));
+
+    if(expenses > budgetLimit)
+    {
+      System.out.println("ALERT: You have exceeded your expense budget limit of $" + budgetLimit);
+    }
+    else
+    {
+      System.out.println("You're all good! Remaining Budgest: $" + String.format("%.2f", budgetLimit=expenses));
+    }
   }
+
+  
 }
+
+
+
+
+
+
 
 
