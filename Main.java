@@ -30,6 +30,59 @@ public class Main{
       System.out.println("5. Export Data to CSV File");
       System.out.println("6. Exit");
       System.out.print("Choose an Option (1-6): ");
+
+      String choice = s.nextLine();
+
+      switch(choice){
+        case "1":
+        case "2":
+          boolean isIncome = choice.equals("1");
+          System.out.print("Enter description: ");
+          String desc = s.nextLine();
+
+          double amt = 0
+          while(true){
+            try{
+              System.out.print("Enter amount ($): ");
+              amt = Double.parseDouble(s.nextLine());
+              break;
+            } catch(NumberFormatException e){
+              System.out.println("Invalid amount. Please enter a number.");
+            }
+          }
+
+          System.out.print("Enter category (i.e.: Salary, Food, Utilities): ");
+          String cat = s.nextLine();
+
+          if(isIncome){
+            tracker.addTransaction(new Income(desc, amt, cat));
+          } else{
+            tracker.addTransaction(new Expense(desc, amt, cat));
+          }
+          System.out.println("Transaction added successfully!");
+          break;
+
+        case "3":
+          tracker.displayALLTransactions();
+          break;
+
+        case "4":
+          tracker.displaySummary();
+          break;
+
+        case "5":
+          tracker.exportToFile("financial_report.csv");
+          break;
+
+        case "6":
+          running = false;
+          System.out.println("Exiting application. Goodbye!");
+          break;
+
+        default:
+          System.out.println("Invalid choice. Please choose a whole number between 1 and 6.");
+      }
     }
+    scanner.close();    
   }
 }
